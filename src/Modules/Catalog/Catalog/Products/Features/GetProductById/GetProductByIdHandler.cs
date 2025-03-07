@@ -1,4 +1,5 @@
-﻿
+﻿using Catalog.Products.Exceptions;
+
 namespace Catalog.Products.Features.GetProductById
 {
     public record GetProductByIdQuery(Guid ProductId) : IQuery<GetProductByIdResult>;
@@ -13,7 +14,7 @@ namespace Catalog.Products.Features.GetProductById
 
             if (product == null)
             {
-                throw new Exception($"Product not found: {query.ProductId}");  
+                throw new ProductNotFoundException(query.ProductId);
             }
 
             var productDto = product.Adapt<ProductDto>();

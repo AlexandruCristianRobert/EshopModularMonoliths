@@ -1,17 +1,17 @@
 ﻿namespace Catalog.Products.Features.GetProduct
 {
-    public record GetProductsResponse(IEnumerable<ProductDto> Products);
+    public record GetProductsResponse(PaginatedResult<ProductDto> Products);
     public class GetProductsEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/products", async ( ISender sender) =>
+            app.MapGet("/products", async ([AsParameters] PaginationRequest request, ISender sender) =>
             {
-                var result = await sender.Send(new GetProductsQuery());
+                var result = await sender.Send(new GetProductsQuery(request));
 
                 var response = result.Adapt<GetProductsResponse>();
 
-                return response;
+                return Results.Ok(response);
             })
                 .WithName("GetProducts")
                 .Produces<GetProductsResponse>(StatusCodes.Status200OK)

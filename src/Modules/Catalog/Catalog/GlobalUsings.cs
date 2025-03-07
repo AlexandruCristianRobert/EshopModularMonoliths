@@ -18,4 +18,6 @@ global using MediatR;
 global using Carter;
 global using Microsoft.AspNetCore.Routing;
 global using Microsoft.AspNetCore.Http;
+global using FluentValidation;
+global using Shared.Pagination;
 global using Microsoft.Extensions.Logging;
