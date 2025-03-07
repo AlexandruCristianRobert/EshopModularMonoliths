@@ -6,6 +6,6 @@ namespace Shared.DDD
     {
         Guid EventId => Guid.NewGuid();
         public DateTime OcuuredOn => DateTime.UtcNow;
-        public string EventType => GetType().AssemblyQualifiedName;
+        public string EventType => GetType().AssemblyQualifiedName!;
     }
 }
