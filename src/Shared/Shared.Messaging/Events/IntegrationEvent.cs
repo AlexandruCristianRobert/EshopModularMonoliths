@@ -1,9 +1,8 @@
-﻿namespace Shared.Messaging.Events
+﻿
+namespace Shared.Messaging.Events;
+public record IntegrationEvent
 {
-    public class IntegrationEvent
-    {
-        public Guid EventId => Guid.NewGuid();
-        public DateTime OccuredOn => DateTime.UtcNow;
-        public string EventType => GetType().AssemblyQualifiedName!;
-    }
+    public Guid EventId => Guid.NewGuid();
+    public DateTime OccurredOn => DateTime.Now;
+    public string EventType => GetType().AssemblyQualifiedName;
 }
